@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	
-	private bool _isFacingRight;
+	public bool _isFacingRight;
 	private CharacterController2D _controller;
 	private float _normalizedHorizontalSpeed;
 
@@ -155,13 +155,13 @@ public class Player : MonoBehaviour {
     
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.name == "vodenazamka")
-	{
-		
-		Animator.SetTrigger("swim");
-		}
+	    if (other.gameObject.name == "vodenazamka")
+	    {
 
+	        Animator.SetTrigger("swim");
+	    }
 
+	 
 
 
 	}

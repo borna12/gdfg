@@ -6,15 +6,15 @@ Direct3D:
     Vendor:   NVIDIA
     VRAM:     1989 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\Denis\Desktop\Icarus\Za_Faks\icarus_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\Denis\Desktop\Icarus\Za_Faks\icarus_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\Denis\Desktop\Icarus\Za_Faks\icarus_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\Denis\Desktop\Icarus\Za_Faks\icarus_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.035 seconds
+Platform assembly: C:\oracle\projects\zafaks3\gdfg\icarus_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\oracle\projects\zafaks3\gdfg\icarus_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\oracle\projects\zafaks3\gdfg\icarus_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\oracle\projects\zafaks3\gdfg\icarus_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+- Completed reload, in  0.081 seconds
 desktop: 1920x1200 59Hz; virtual: 1920x1200 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Platform assembly: C:\Users\Denis\Desktop\Icarus\Za_Faks\icarus_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\oracle\projects\zafaks3\gdfg\icarus_Data\Managed\System.Core.dll (this message is harmless)
 The referenced script on this Behaviour is missing!
  
 (Filename:  Line: 1783)
@@ -23,11 +23,11 @@ The referenced script on this Behaviour is missing!
  
 (Filename:  Line: 1783)
 
-UnloadTime: 0.443387 ms
+UnloadTime: 9.602248 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 156.
-Total: 0.838549 ms (FindLiveObjects: 0.022797 ms CreateObjectMapping: 0.012275 ms MarkObjects: 0.072192 ms  DeleteObjects: 0.065470 ms)
+Total: 0.830072 ms (FindLiveObjects: 0.015490 ms CreateObjectMapping: 0.012275 ms MarkObjects: 0.077161 ms  DeleteObjects: 0.067224 ms)
 
 The referenced script on this Behaviour is missing!
  
@@ -41,9 +41,9 @@ The referenced script on this Behaviour is missing!
  
 (Filename:  Line: 1783)
 
-UnloadTime: 0.418836 ms
+UnloadTime: 0.404806 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 1112.
-Total: 3.680379 ms (FindLiveObjects: 0.067516 ms CreateObjectMapping: 0.020751 ms MarkObjects: 0.242591 ms  DeleteObjects: 2.647172 ms)
+Total: 3.507058 ms (FindLiveObjects: 0.073946 ms CreateObjectMapping: 0.020459 ms MarkObjects: 0.251360 ms  DeleteObjects: 2.536691 ms)
 
