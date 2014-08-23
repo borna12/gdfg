@@ -1,0 +1,28 @@
+﻿using System.Runtime.Serialization.Formatters;
+using UnityEngine;
+using System.Collections;
+
+public class ExitApplication : MonoBehaviour
+{
+    void Start()
+    {
+      
+    }
+
+    // Update is called once per frame
+	void Update () {
+
+if (Input.GetKeyDown(KeyCode.Escape) == true)
+{
+Application.Quit();
+}
+
+if (Input.GetKeyDown(KeyCode.Return) == true)
+{
+    Application.LoadLevel("profile_select");
+ 
+
+
+}
+	}
+}
