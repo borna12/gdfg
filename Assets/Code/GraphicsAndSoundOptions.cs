@@ -22,7 +22,6 @@ public class GraphicsAndSoundOptions : MonoBehaviour
     {
 
 				var glazba = GameObject.Find ("main_music");
-				glazba.audio.ignoreListenerVolume = true;
 				tm = (TextMesh)GameObject.Find ("volume").GetComponent<TextMesh> ();
 				float cjeli;
 				cjeli = glazba.audio.volume * 10;
@@ -109,11 +108,13 @@ public class GraphicsAndSoundOptions : MonoBehaviour
 			AudioListener.volume -= .1f;
 			int a = int.Parse(tm2.text);
 			if(AudioListener.volume<0f)
-				AudioListener.volume += .1f;
+                AudioListener.volume = .0f;
+
 			
 			if (a == 10||a>0){
-				a = a - 1;    
-			}
+				a = a - 1;
+
+            }
 			tm2.text = a.ToString();
 			PlayerPrefs.SetFloat("sfx_music",AudioListener.volume);
 		}
@@ -125,7 +126,7 @@ public class GraphicsAndSoundOptions : MonoBehaviour
 			AudioListener.volume += .1f;
 			int a = int.Parse(tm2.text);
 			if(AudioListener.volume>1f)
-				AudioListener.volume -= .1f;
+				AudioListener.volume = 1f;
 			if (a < 10)
 			{ 
 				a = a + 1;
