@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SortParticalsystem : MonoBehaviour {
+public class SortParticleSystem : MonoBehaviour {
 
-
-	public void Start()
-	{
+	// Use this for initialization
+	void Start () {
+	
 	}
-
+	
+	// Update is called once per frame
 	void Update () {
-		particleSystem.renderer.sortingLayerName = "igrac i protivnik";
+		particleSystem.renderer.sortingLayerName = "Particles";
 		particleSystem.renderer.sortingOrder = 10;
 	}
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-public class MouseEnter : MonoBehaviour
+public class OptionsMenu : MonoBehaviour
 {
 
     // Use this for initialization
@@ -75,7 +75,7 @@ public class MouseEnter : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        renderer.material.color = Color.gray;
+        gameObject.renderer.material.color = Color.gray;
 
     }
 

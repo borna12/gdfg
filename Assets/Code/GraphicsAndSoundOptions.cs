@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class VolumeMeni : MonoBehaviour
+public class GraphicsAndSoundOptions : MonoBehaviour
 {
 
     private TextMesh tm;

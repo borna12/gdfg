@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,10 +32,10 @@ public class Profile : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		//PlayerPrefs.DeleteAll ();
 		Screen.showCursor = true;
-		var prof = profil1.GetComponent <SpriteRenderer> ();
-		prof.color = Color.gray;
+		profil1.GetComponent <SpriteRenderer> ().color = Color.gray;
 
 		var name1=GameObject.Find("profilename1");
 		var text1=name1.GetComponent<TextMesh>();
@@ -43,7 +44,6 @@ public class Profile : MonoBehaviour {
 			del1.active=true;
 		} else {text1.text = "Profile 1";}
 				
-
 
 		var name2=GameObject.Find("profilename2");
 		var text2=name2.GetComponent<TextMesh>();
@@ -63,9 +63,9 @@ public class Profile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		windowRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 300, 80);
-				var prof = profil1.GetComponent <SpriteRenderer> ();
-				var prof3 = profil3.GetComponent <SpriteRenderer> ();
-				var prof2 = profil2.GetComponent <SpriteRenderer> ();
+        var prof = profil1.GetComponent <SpriteRenderer> ();
+			var prof3 = profil3.GetComponent <SpriteRenderer> ();
+			var prof2 = profil2.GetComponent <SpriteRenderer> ();
 
 				if (Input.GetKeyDown (KeyCode.DownArrow) == true) {
 
@@ -133,7 +133,7 @@ public class Profile : MonoBehaviour {
 						var prof3 = profil3.GetComponent <SpriteRenderer> ();
 						var prof2 = profil2.GetComponent <SpriteRenderer> ();
 
-						if (gameObject.name == "profile selection 1") {
+		if (gameObject == profil1) {
 						
 								prof.color = Color.gray;
 								prof2.color = new Color (121, 178, 225, 255);
@@ -142,7 +142,7 @@ public class Profile : MonoBehaviour {
 								selecteditem = 0;
 						}
 			
-						if (gameObject.name == "profile selection 2") {
+		if (gameObject == profil2) {
 								prof.color = new Color (121, 178, 225, 255);
 								prof2.color = Color.gray;
 								prof3.color = new Color (121, 178, 225, 255);
@@ -150,7 +150,7 @@ public class Profile : MonoBehaviour {
 								selecteditem = 1;
 						}
 
-						if (gameObject.name == "profile selection 3") {
+		if (gameObject == profil3) {
 								prof.color = new Color (121, 178, 225, 255);
 								prof3.color = Color.gray;
 								prof2.color = new Color (121, 178, 225, 255);
@@ -164,19 +164,21 @@ public class Profile : MonoBehaviour {
 		private void OnMouseDown()
 	{
 
-				if (gameObject.name == "profile selection 1") {
+		if (gameObject == profil1) {
 						var name1 = GameObject.Find ("profilename1");
 						var text1 = name1.GetComponent<TextMesh> ();
-						if (text1.text == PlayerPrefs.GetString ("player 1")) {
+
+			if (text1.text == PlayerPrefs.GetString ("player 1")) {
 				var manager=GameObject.Find("profileManager");
 				var manager2=manager.GetComponent<ProfileManager>();
 				manager2.profile1=true;
 				PlayerPrefs.GetInt("player_1_progress");
 				Application.DontDestroyOnLoad(manager);
-				Application.LoadLevel("menu");
+				Application.LoadLevel ("menu");
+
 						} 
 			else {
-				pro1 = true;
+				pro1=true;
 				var p2 = profil2.GetComponent<BoxCollider2D> ();
 					p2.enabled = false;
 				var p3 = profil3.GetComponent<BoxCollider2D> ();
@@ -189,21 +191,24 @@ public class Profile : MonoBehaviour {
 				var d3 = del3.GetComponent<BoxCollider2D> ();
 				d3.enabled = false;
 				okvir.active = false;
+
 						}
 				}
 
-				if (gameObject.name == "profile selection 2") {
-						var name2 = GameObject.Find ("profilename2");
-						var text2 = name2.GetComponent<TextMesh> ();
-						if (text2.text == PlayerPrefs.GetString ("player 2")) {
+		if (gameObject== profil2) {
+			var name2 = GameObject.Find ("profilename2");
+			var text2 = name2.GetComponent<TextMesh> ();
+		
+			if (text2.text == PlayerPrefs.GetString ("player 2")) {
 				var manager=GameObject.Find("profileManager");
 				var manager2=manager.GetComponent<ProfileManager>();
 				manager2.profile2=true;
 				PlayerPrefs.GetInt("player_2_progress");
 				Application.DontDestroyOnLoad(manager);
 								Application.LoadLevel ("menu");
-						} else {
-								pro2 = true;
+			} else {
+				pro2 = true;
+
 				var p1 = profil1.GetComponent<BoxCollider2D> ();
 				p1.enabled = false;
 				var p3 = profil3.GetComponent<BoxCollider2D> ();
@@ -213,13 +218,17 @@ public class Profile : MonoBehaviour {
 				d1.enabled = false;
 				var d2 = del2.GetComponent<BoxCollider2D> ();
 				d2.enabled = false;
+
 				var d3 = del3.GetComponent<BoxCollider2D> ();
 				d3.enabled = false;
 				okvir.active = false;
+
+		
+
 						}
 				}
 
-		if (gameObject.name == "profile selection 3") {
+		if (gameObject== profil3) {
 						var name3 = GameObject.Find ("profilename3");
 						var text3 = name3.GetComponent<TextMesh> ();
 						if (text3.text == PlayerPrefs.GetString ("player 3")) {
@@ -244,7 +253,10 @@ public class Profile : MonoBehaviour {
 				d3.enabled = false;
 				okvir.active = false;}}
 
-		if (gameObject.name == "del1") {
+
+
+
+		if (gameObject == del1) {
 			delp1=true;
 			var p2 = profil2.GetComponent<BoxCollider2D> ();
 			p2.enabled = false;
@@ -257,7 +269,7 @@ public class Profile : MonoBehaviour {
 			d3.enabled = false;
 			okvir.active = false;}
 
-		if (gameObject.name == "del2") {
+		if (gameObject == del2) {
 			delp2=true;
 			var p1 = profil1.GetComponent<BoxCollider2D> ();
 			p1.enabled = false;
@@ -270,7 +282,7 @@ public class Profile : MonoBehaviour {
 			d3.enabled = false;
 			okvir.active = false;
 		}
-		if (gameObject.name == "del3") {
+		if (gameObject == del3) {
 			delp3=true;
 			var p1 = profil1.GetComponent<BoxCollider2D> ();
 			p1.enabled = false;
@@ -282,12 +294,14 @@ public class Profile : MonoBehaviour {
 			var d2 = del2.GetComponent<BoxCollider2D> ();
 			d2.enabled = false;
 
-			okvir.active = false;}}
+			okvir.active = false;}
+
+		  
+	}
 		
 		private void OnMouseExit()
 		{
-			var prof1 = gameObject.GetComponent <SpriteRenderer> ();
-			prof1.color = new Color (121,178,225,255);
+			gameObject.GetComponent<SpriteRenderer>().color=new Color (121,178,225,255);
 		}
 
 	private void OnGUI(){
@@ -309,17 +323,26 @@ public class Profile : MonoBehaviour {
 
 	private void windowFunc(int id)
 	{
-
+        GUILayout.FlexibleSpace();
 		GUILayout.BeginHorizontal ();
 		GUILayout.Label ("Enter Player Name: ");
 		guistring=GUILayout.TextField (guistring);
-		GUILayout.EndHorizontal ();
+	    if  (guistring.Length> 15)
+	    {
+	        guistring = guistring.Remove(15);
+	    }
+	    GUILayout.EndHorizontal ();
 		GUILayout.BeginHorizontal ();
 		if(GUILayout.Button("Confirm")){
 			var name1=GameObject.Find("profilename1");
 			var text1=name1.GetComponent<TextMesh>();
 			text1.text=guistring;
-			PlayerPrefs.SetString("player 1",text1.text);
+		    if (text1.text.Length <= 0)
+		    {
+                text1.text = "Profile 1";
+                return;
+		    }
+		    PlayerPrefs.SetString("player 1",text1.text);
 			PlayerPrefs.SetInt("player_1_progress",0);
 			var manager=GameObject.Find("profileManager");
 			var manager2=manager.GetComponent<ProfileManager>();
@@ -329,6 +352,7 @@ public class Profile : MonoBehaviour {
 			Application.LoadLevel("menu");
 
 		}
+
 		if(GUILayout.Button("Cancle")){
 			var name1=GameObject.Find("profilename1");
 			var text1=name1.GetComponent<TextMesh>();
@@ -364,7 +388,10 @@ public class Profile : MonoBehaviour {
 			var d3 = del3.GetComponent<BoxCollider2D> ();
 			d3.enabled = true;
 		}
-		GUILayout.EndHorizontal ();}
+		
+        GUILayout.EndHorizontal();
+        GUILayout.FlexibleSpace();
+    }
 
 
 
@@ -374,7 +401,10 @@ public class Profile : MonoBehaviour {
 		
 				GUILayout.Label ("Enter Player Name: ");
 				guistring = GUILayout.TextField (guistring);
-		
+                if (guistring.Length > 15)
+                {
+                    guistring = guistring.Remove(15);
+                }
 				GUILayout.EndHorizontal ();
 		
 				GUILayout.BeginHorizontal ();
@@ -382,6 +412,11 @@ public class Profile : MonoBehaviour {
 						var name2 = GameObject.Find ("profilename2");
 						var text2 = name2.GetComponent<TextMesh> ();
 						text2.text = guistring;
+                        if (text2.text.Length <= 0)
+                        {
+                            text2.text = "Profile 2";
+                            return;
+                        }
 						PlayerPrefs.SetString ("player 2", text2.text);
 						PlayerPrefs.SetInt ("player_2_progress", 0);
 						var manager = GameObject.Find ("profileManager");
@@ -437,12 +472,20 @@ private void windowFunc3(int id)
 		guistring=GUILayout.TextField (guistring);
 		
 		GUILayout.EndHorizontal ();
-		
+        if (guistring.Length > 15)
+        {
+            guistring = guistring.Remove(15);
+        }
 		GUILayout.BeginHorizontal ();
 		if(GUILayout.Button("Confirm")){
 			var name3=GameObject.Find("profilename3");
 			var text3=name3.GetComponent<TextMesh>();
 			text3.text=guistring;
+            if (text3.text.Length <= 0)
+            {
+                text3.text = "Profile 3";
+                return;
+            }
 			PlayerPrefs.SetString("player 3",text3.text);
 			PlayerPrefs.SetInt("player_3_progress",0);
 			var manager=GameObject.Find("profileManager");

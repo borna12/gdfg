@@ -83,7 +83,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 330514163}
   - 212: {fileID: 330514162}
-  - 114: {fileID: 330514161}
   - 82: {fileID: 330514164}
   m_Layer: 0
   m_Name: index
@@ -92,17 +91,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &330514161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 330514160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11866481c7949e844b343e98ec3b21e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &330514162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -209,6 +197,7 @@ GameObject:
   - 81: {fileID: 774592069}
   - 114: {fileID: 774592074}
   - 114: {fileID: 774592075}
+  - 114: {fileID: 774592076}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -301,5 +290,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2899841cb9baf15439f90f5f60969f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &774592076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 774592068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11866481c7949e844b343e98ec3b21e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

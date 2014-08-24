@@ -178,8 +178,8 @@ GameObject:
   - 4: {fileID: 223602996}
   - 23: {fileID: 223602995}
   - 102: {fileID: 223602994}
-  - 114: {fileID: 223602998}
   - 61: {fileID: 223602997}
+  - 114: {fileID: 223602998}
   m_Layer: 0
   m_Name: new_game
   m_TagString: Untagged
@@ -523,8 +523,8 @@ GameObject:
   - 4: {fileID: 1271057177}
   - 23: {fileID: 1271057179}
   - 102: {fileID: 1271057178}
-  - 114: {fileID: 1271057180}
   - 61: {fileID: 1271057181}
+  - 114: {fileID: 1271057180}
   m_Layer: 0
   m_Name: options
   m_TagString: Untagged
@@ -711,8 +711,8 @@ GameObject:
   - 4: {fileID: 1400221887}
   - 23: {fileID: 1400221886}
   - 102: {fileID: 1400221885}
-  - 114: {fileID: 1400221888}
   - 61: {fileID: 1400221889}
+  - 114: {fileID: 1400221888}
   m_Layer: 0
   m_Name: exit
   m_TagString: Untagged
