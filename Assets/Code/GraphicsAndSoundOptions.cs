@@ -13,6 +13,7 @@ public class GraphicsAndSoundOptions : MonoBehaviour
 	private GameObject checkbox;
 	public GameObject x;
 	public GameObject x2;
+    public GameObject x3;
 	private GameObject checkbox2;
 
 	List<string> iList=new List<string>();
@@ -67,6 +68,25 @@ public class GraphicsAndSoundOptions : MonoBehaviour
 			Screen.fullScreen= Screen.fullScreen;
 			x2.active=true;
 		}
+
+        if (Screen.fullScreen == true)
+        {
+            x2.active = false;
+        }
+        else
+        {
+            Screen.fullScreen = Screen.fullScreen;
+            x2.active = true;
+        }
+
+        if (PlayerPrefs.GetInt("fpscounter") == 1)
+        {
+            x3.active = true;
+        }
+        else
+        {
+            x3.active = false;
+        }
 
 	}
     void OnMouseEnter()
@@ -194,6 +214,20 @@ public class GraphicsAndSoundOptions : MonoBehaviour
 				Screen.fullScreen= true;
 			}
 		}
+
+
+        if (gameObject.name == "fps")
+        {
+            if (PlayerPrefs.GetInt("fpscounter") == 1)
+            {
+                PlayerPrefs.SetInt("fpscounter", 0);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("fpscounter", 1);
+            }
+           
+        }
 	}
 		
 

@@ -19,7 +19,7 @@ public class OptionsMenu : MonoBehaviour
     {
         var glazba = GameObject.Find("main_music");
         glazba.audio.ignoreListenerVolume = true;
-        Screen.showCursor = true;
+
 
 		var profileManager=GameObject.Find("profileManager");
 		var profile=profileManager.GetComponent<ProfileManager>();

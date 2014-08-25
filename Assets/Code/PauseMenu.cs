@@ -21,10 +21,14 @@ public class PauseMenu : MonoBehaviour
 	
     private string screen;
     private string vsynch;
+    private string fps;
+    private GameObject guitext;
 
 	private int lister=49;
 	List<string> iList=new List<string>();
     private float GammaCorrection;
+
+
 
 
 	void Awake(){
@@ -46,6 +50,8 @@ public class PauseMenu : MonoBehaviour
 			PlayerPrefs.SetString ("CurrentLevelPlayer3",Application.loadedLevelName.ToString());
 		}
 
+	    guitext = GameObject.Find("FPSCOUNTER");
+
 	}
 
     private void Start()
@@ -59,6 +65,15 @@ public class PauseMenu : MonoBehaviour
 			glaz.audio.clip = clip;
 			glaz.audio.Play();
 		}
+
+        if (PlayerPrefs.GetInt("fpscounter") == 1)
+        {
+            guitext.active = true;
+        }
+        else
+        {
+            guitext.active = false;
+        }
     }
 
     private void Update()
@@ -69,6 +84,7 @@ public class PauseMenu : MonoBehaviour
 		windowRect3 = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 300, 250, iList.Count*lister);
 		windowRect4 = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 250, 130);
         windowRect5 = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 100);
+        windowRect6 = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 250, 150);
 
         if (QualitySettings.vSyncCount == 1)
         {
@@ -88,6 +104,15 @@ public class PauseMenu : MonoBehaviour
             screen = "Fullscreen";
         }
 
+        if (guitext.activeInHierarchy == false)
+        {
+            fps = "On";
+        }
+        else
+        {
+            fps = "Off";
+        }
+
         if (Input.GetKeyDown(KeyCode.P) == true || Input.GetKeyDown(KeyCode.Escape) == true)
         {
 
@@ -95,7 +120,7 @@ public class PauseMenu : MonoBehaviour
             {
 
                 Time.timeScale = 0;
-                Screen.showCursor = true;
+               
                 var glazba = GameObject.Find("main_music");
                 glazba.audio.Pause();
 				gameObject.GetComponent<Player>().enabled = false;
@@ -127,8 +152,14 @@ public class PauseMenu : MonoBehaviour
 
     private void OnGUI()
     {
+
         if (Time.timeScale == 0)
+        {
+
+
             windowRect = GUI.Window(0, windowRect, windowFunc, "Pause Menu");
+           
+        }
 
         if (editing == false)
         {
@@ -156,7 +187,7 @@ public class PauseMenu : MonoBehaviour
         }
         if (editing4 == false)
         {
-            windowRect4 = GUI.Window(0, windowRect4, windowFunc5, "Graphics Options");
+            windowRect6 = GUI.Window(0, windowRect6, windowFunc5, "Graphics Options");
             if (Input.GetKeyDown(KeyCode.Escape) == true || Input.GetKeyDown(KeyCode.P) == true)
             {
                 editing4= true;
@@ -309,6 +340,24 @@ public class PauseMenu : MonoBehaviour
             {
                 QualitySettings.vSyncCount = 1;
 				PlayerPrefs.SetInt("vsynch",QualitySettings.vSyncCount = 1);
+            }
+
+        }
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.Label("FPS Counter");
+        if (GUILayout.Button(fps))
+        {
+            if (guitext.active == true)
+            {
+                guitext.SetActive(false);
+                PlayerPrefs.SetInt("fpscounter", 0);
+            }
+            else
+            {
+                guitext.SetActive(true);
+                PlayerPrefs.SetInt("fpscounter", 1);
             }
 
         }

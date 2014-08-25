@@ -39,6 +39,5 @@ public class Checkpoint : MonoBehaviour {
 	public void AssignObjectToCheckpoint(IPlayerRespawnListener listner)
 	{
 		_listners.Add (listner);
-		Debug.Log (listner);
 	}
 }

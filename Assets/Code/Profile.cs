@@ -1,8 +1,4 @@
-﻿using System;
-using UnityEditor;
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 
 public class Profile : MonoBehaviour {
 	private Rect windowRect;
@@ -28,13 +24,12 @@ public class Profile : MonoBehaviour {
 	Vector3 v3= new Vector3(-0.08242416f,-3.515492f,0);
 	int selecteditem=0;
 	private string guistring="";
-	
+
 
 	// Use this for initialization
 	void Start () {
-
+    
 		//PlayerPrefs.DeleteAll ();
-		Screen.showCursor = true;
 		profil1.GetComponent <SpriteRenderer> ().color = Color.gray;
 
 		var name1=GameObject.Find("profilename1");
@@ -62,6 +57,8 @@ public class Profile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+      
+
 		windowRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 300, 80);
         var prof = profil1.GetComponent <SpriteRenderer> ();
 			var prof3 = profil3.GetComponent <SpriteRenderer> ();

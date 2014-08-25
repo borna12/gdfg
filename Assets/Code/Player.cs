@@ -44,7 +44,6 @@ public class Player : MonoBehaviour {
 
 	}
 	public void Update(){
-		Debug.Log (LifeText.text);
 		if (!IsDead) {
 						HandleInput ();
 		}
