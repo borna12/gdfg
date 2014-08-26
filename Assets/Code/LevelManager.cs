@@ -111,7 +111,7 @@ public class LevelManager : MonoBehaviour
         if (string.IsNullOrEmpty(levelName))
             Application.LoadLevel("StartScreen");
         else
-        {
+        { //spriječava uništavanje profile managera u idućoj sceni
 			var profileManager=GameObject.Find("profileManager");
 			DontDestroyOnLoad(profileManager);
             Application.LoadLevel(levelName);

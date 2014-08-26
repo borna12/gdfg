@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class PauseMenu : MonoBehaviour
 {
+    //parametri za određene gui prozore
     private Rect windowRect;
     private Rect windowRect2;
     private Rect windowRect3;
@@ -12,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     private Rect windowRect5;
     private Rect windowRect6;
 	
+    //booleanove vrijednosti koje kada su istinite otvaraju određene gui prozore s različitim opcijama
     private bool editing = true;
     private bool editing2 = true;
     private bool editing3 = true;
@@ -19,11 +21,15 @@ public class PauseMenu : MonoBehaviour
     private bool editing5 = true;
     private bool editing6 = true;
 	
+    //stringovi za gumbe koji se mjenjaju(recimo on/off)
     private string screen;
     private string vsynch;
     private string fps;
+
+    //guitext koji prikazuje fps
     private GameObject guitext;
 
+    //veličina prozora za prikaz rezolucija monitora
 	private int lister=49;
 	List<string> iList=new List<string>();
     private float GammaCorrection;
@@ -32,14 +38,21 @@ public class PauseMenu : MonoBehaviour
 
 
 	void Awake(){
+
+        guitext = GameObject.Find("FPSCOUNTER");
+
+        //sve rezolucije stavi u liastu
 		Resolution [] resolutions= Screen.resolutions;
 		foreach (Resolution res in resolutions) {
 			iList.Add (res.width + " x " + res.height);
 			lister=lister-1;}
+
+
 		Screen.showCursor = false;
 		var profileMan = GameObject.Find ("profileManager");
 		var profile = profileMan.GetComponent<ProfileManager> ();
 
+        //zabilježi na kojem je trenutnom levelu igrać
 		if (profile.profile1 == true) {
 			PlayerPrefs.SetString ("CurrentLevelPlayer1",Application.loadedLevelName.ToString());
 		}
@@ -50,7 +63,6 @@ public class PauseMenu : MonoBehaviour
 			PlayerPrefs.SetString ("CurrentLevelPlayer3",Application.loadedLevelName.ToString());
 		}
 
-	    guitext = GameObject.Find("FPSCOUNTER");
 
 	}
 
@@ -66,6 +78,7 @@ public class PauseMenu : MonoBehaviour
 			glaz.audio.Play();
 		}
 
+        //gleda jeli u opcijama uključen fpscounter
         if (PlayerPrefs.GetInt("fpscounter") == 1)
         {
             guitext.active = true;
@@ -78,7 +91,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        //RenderSettings.ambientLight =  Color.Lerp(Color.white, Color.black, GammaCorrection);
+        //širina, visina i pozicija određenih gui prozora
         windowRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 180);
         windowRect2 = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 130);
 		windowRect3 = new Rect(Screen.width / 2 - 150, Screen.height / 2 - 300, 250, iList.Count*lister);
@@ -86,6 +99,7 @@ public class PauseMenu : MonoBehaviour
         windowRect5 = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 100);
         windowRect6 = new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 250, 150);
 
+        //provjerava uključenost vsyncha -samo za prikaz teksta gumba u gui-u
         if (QualitySettings.vSyncCount == 1)
         {
             vsynch = "Off";
@@ -95,6 +109,7 @@ public class PauseMenu : MonoBehaviour
             vsynch = "On";
         }
 
+        //provjerava je li u window modu prikaz -samo za prikaz teksta gumba u gui-u
         if (Screen.fullScreen == true)
         {
             screen = "Window";
@@ -103,7 +118,7 @@ public class PauseMenu : MonoBehaviour
         {
             screen = "Fullscreen";
         }
-
+        //provjerava je li u fpscounter uključen -samo za prikaz teksta gumba u gui-u
         if (guitext.activeInHierarchy == false)
         {
             fps = "On";
@@ -113,6 +128,8 @@ public class PauseMenu : MonoBehaviour
             fps = "Off";
         }
 
+
+        // funkcija za pauzu koja se pokreće pritiskom na p ili esc
         if (Input.GetKeyDown(KeyCode.P) == true || Input.GetKeyDown(KeyCode.Escape) == true)
         {
 
@@ -121,10 +138,16 @@ public class PauseMenu : MonoBehaviour
 
                 Time.timeScale = 0;
                
+                //zaustavljanje glazbe
                 var glazba = GameObject.Find("main_music");
                 glazba.audio.Pause();
+
+
+                //onemogučavanje okretanja lika
 				gameObject.GetComponent<Player>().enabled = false;
 
+
+                //onemogučavanje pucanja iz oružja. ime svoj kod napiši tu umjesto mojeg
 				if(gameObject.GetComponent<Player>().CurrentWeapon==gameObject.GetComponent<Player>().Weapon2)
 				gameObject.GetComponent<Player>().CurrentWeapon.GetComponent<WeaponPickUp>().enabled=false;
 				if(gameObject.GetComponent<Player>().CurrentWeapon==gameObject.GetComponent<Player>().Weapon1)
@@ -138,37 +161,45 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 Time.timeScale = 1;
+
+                //nastavlja svirati glazbu
                 var glazba = GameObject.Find("main_music");
                 glazba.audio.PlayScheduled(1);
 
 				gameObject.GetComponent<Player>().enabled = true;
+
+                //omoguči korisštenje oružja, ime opet zamjeni svojim kodom
 				gameObject.GetComponent<Player>().CurrentWeapon.GetComponent<WeaponPickUp>().enabled=true;
 				gameObject.GetComponent<Player>().CurrentWeapon.GetComponent<WeaponPickUpKnife>().enabled=true;
 				gameObject.GetComponent<Player>().CurrentWeapon.GetComponent<WeaponPickUp2>().enabled=true;
-                Screen.showCursor = false;
+
             }
         }
     }
 
     private void OnGUI()
     {
+        //Gui prozorčići pauza menija
 
+        //glavni prozor
         if (Time.timeScale == 0)
         {
-
 
             windowRect = GUI.Window(0, windowRect, windowFunc, "Pause Menu");
            
         }
 
+        //prozori za zvuk i grafiku
         if (editing == false)
         {
             windowRect5 = GUI.Window(0, windowRect5, windowFunc2, "Options Menu");
             if (Input.GetKeyDown(KeyCode.Escape) == true || Input.GetKeyDown(KeyCode.P) == true)
             {
-                editing = true;
+                editing = true; //kada je editing true vodi do drugoog prozora i zatvra trenutni
             }
         }
+
+
         if (editing2 == false)
         {
             windowRect2 = GUI.Window(0, windowRect2, windowFunc3, "Sound Options");
@@ -177,6 +208,7 @@ public class PauseMenu : MonoBehaviour
                 editing2 = true;
             }
         }
+
         if (editing3 == false)
         {
             windowRect3 = GUI.Window(0, windowRect3, windowFunc4, "Resolution Options");
@@ -194,7 +226,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-
+        //prozor za kontrole čemo ispuniti dok sredimo glavnog lika i otkrijemo što sve želimo imati u igri
         if (editing5 == false)
         {
             windowRect4 = GUI.Window(0, windowRect4, windowFunc8, "Controls");
@@ -203,6 +235,8 @@ public class PauseMenu : MonoBehaviour
                 editing5 = true;
             }
         }
+
+        // za biranje nivoa
         if (editing6 == false)
         {
             windowRect4 = GUI.Window(0, windowRect4, windowFunc7, "Load Options");
@@ -213,6 +247,10 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+
+    //funkcije koje pokreću određeni gumbi unutar prozora
+
+    //funkcija za glavni prozor
     private void windowFunc(int id)
     {
 		GUILayout.FlexibleSpace ();
@@ -261,6 +299,7 @@ public class PauseMenu : MonoBehaviour
 		GUILayout.FlexibleSpace ();
     }
 
+
     private void windowFunc2(int id)
     {
         if (GUILayout.Button("Sound"))
@@ -278,6 +317,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //funkcija za zvuk
     private void windowFunc3(int id)
     {
         var glazba = GameObject.Find("main_music");
@@ -297,11 +337,10 @@ public class PauseMenu : MonoBehaviour
 
         }
     }
- 
 
+    //funkcija za rezolucije i grafiku
     private void windowFunc5(int id)
     {
-        
         GUILayout.BeginHorizontal();
         GUILayout.Label("Resolution: ");
         
@@ -402,11 +441,9 @@ public class PauseMenu : MonoBehaviour
 		GUILayout.FlexibleSpace ();
     }
 
-
+    //funkcija u slučaju izbora drugog nivoa(stavlja život i municiju po defaultu)
     private void windowFunc7(int id)
     {
-
-
 				GUILayout.FlexibleSpace ();
 
 				var profileManager = GameObject.Find ("profileManager");
@@ -525,15 +562,6 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-    private void LoadLevel1(int levelnumb)
-{
-
-}
-
-    private void LoadLevel2(int levelnumb)
-    {
-
-    }
 
 
 }

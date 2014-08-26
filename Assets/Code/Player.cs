@@ -15,23 +15,27 @@ public class Player : MonoBehaviour {
 	public int MaxHealth=100;
 	public GameObject OuchEffect;
 	public GameObject HealthBody;
+    //Deathface je faca dok lik umre
 	public GameObject DeathFace;
+    //oružja
 	public GameObject CurrentWeapon;
 	public GameObject Weapon1;
 	public GameObject Weapon2;
 	public GameObject Weapon3;
 	public ParticleSystem HealthBarParticle;
-	public TextMesh LifeText;
     public AudioClip PlayerHitsound;
     public AudioClip PlayerHealthsound;
     public Animator Animator;
+
+    //koliko život ima igraè
+    public TextMesh LifeText;
 
 
 	public int Health { get; private set;}
 	public bool IsDead { get; private set;}
 
 	
-
+    //gui koji se pojavljuje kada igraè umre
 	private Rect windowRect;
 	private bool editing = false;
 
@@ -68,6 +72,8 @@ public class Player : MonoBehaviour {
         enabled = false;
         _controller.enabled = false;
         collider2D.enabled = false;
+
+        //animacija proðenog levela. ako nije napravljena neka se izbriše
 		Animator.SetTrigger("win");
     }
 
@@ -77,6 +83,8 @@ public class Player : MonoBehaviour {
 		collider2D.enabled = false;
 		IsDead = true;
 		Health = 0;
+
+        //dok igraæ umre. ime ostavi i ovo
 		int lifes = Convert.ToInt32(LifeText.text);
 		lifes = lifes - 1;
 		LifeText.text = lifes.ToString ();
@@ -145,6 +153,7 @@ public class Player : MonoBehaviour {
 			_controller.Jump();		
 		}
 
+        //promjena oružja
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			
 						CurrentWeapon = Weapon1;
@@ -172,6 +181,8 @@ public class Player : MonoBehaviour {
 		_isFacingRight = transform.localScale.x > 0;
 	}
     
+
+    //game over screen. ime ostavi ovaj dio u playeru
 	private void windowFunc(int id){
 		CurrentWeapon.SetActive (false);
 

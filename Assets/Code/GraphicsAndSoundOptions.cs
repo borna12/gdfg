@@ -91,7 +91,9 @@ public class GraphicsAndSoundOptions : MonoBehaviour
 	}
     void OnMouseEnter()
     {
-        renderer.material.color = Color.gray;
+
+            gameObject.renderer.material.color = Color.gray;
+
 
     }
 
